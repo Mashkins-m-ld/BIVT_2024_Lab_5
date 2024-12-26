@@ -15,7 +15,7 @@ public class Program
     {
         Program program = new Program();
 
-        
+
 
     }
     #region Level 1
@@ -154,26 +154,68 @@ public class Program
 
         // end
     }
-
-    public void Task_2_2(double[] A, double[] B)
+    public int CheckIntArray(int[] A)
     {
-        // code here
         int fl = 0;
         foreach (double i in A)
         {
             if (i != 0)
             {
                 fl = 1;
+                break;
             }
         }
-        foreach (double i in B)
+        return fl;
+
+    }
+    public int CheckDoubleArray(double[] A)
+    {
+        int fl = 0;
+        foreach (double i in A)
         {
             if (i != 0)
             {
                 fl = 1;
+                break;
             }
         }
-        if (A == null || B == null || fl == 0) return;
+        return fl;
+
+    }
+    public int CheckIntMatrix(int[,] A)
+    {
+        int fl = 0;
+        foreach (double i in A)
+        {
+            if (i != 0)
+            {
+                fl = 1;
+                break;
+            }
+        }
+        return fl;
+
+    }
+
+    public int CheckDoubleMatrix(double[,] A)
+    {
+        int fl = 0;
+        foreach (double i in A)
+        {
+            if (i != 0)
+            {
+                fl = 1;
+                break;
+            }
+        }
+        return fl;
+
+    }
+    public void Task_2_2(double[] A, double[] B)
+    {
+        // code here
+
+        if (A == null || B == null || CheckDoubleArray(A) == 0 || CheckDoubleArray(B) == 0) return;
 
         // create and use FindMaxIndex(array);
         // only 1 array has to be changed!
@@ -181,40 +223,31 @@ public class Program
 
         if (FindMaxIndex(A) < FindMaxIndex(B))
         {
-            int n = FindMaxIndex(A);
-            double average = 0;
-            for (int i = n + 1; i < A.Length; i++)
-                average += A[i];
-            average /= (A.Length - n - 1);
-            for (int i = 0; i < A.Length; i++)
-            {
-                if (A[i] == A[n])
-                {
-
-                    A[i] = average;
-                }
-            }
+            ChangeMaxEl(A);
         }
         else
         {
-            if (FindMaxIndex(A) == FindMaxIndex(B)) return;
-            else
-            {
-                int n = FindMaxIndex(B);
-                double average = 0;
-                for (int i = n + 1; i < B.Length; i++)
-                    average += B[i];
-                average /= (B.Length - n - 1);
-                for (int i = 0; i < B.Length; i++)
-                {
-                    if (B[i] == B[n]) B[i] = average;
-                }
-            }
+            ChangeMaxEl(B);
         }
 
         // end
     }
+    public void ChangeMaxEl(double[] A)
+    {
+        int n = FindMaxIndex(A);
+        double average = 0;
+        for (int i = n + 1; i < A.Length; i++)
+            average += A[i];
+        average /= (A.Length - n - 1);
+        for (int i = 0; i < A.Length; i++)
+        {
+            if (A[i] == A[n])
+            {
 
+                A[i] = average;
+            }
+        }
+    }
     public int FindMaxIndex(double[] array)
     {
         int index = 0;
